@@ -7,7 +7,7 @@ CREATE TABLE documents
     series varchar not null,
     number varchar not null,
     type document_type not null,
-    issueDate date not null
+    issue_date date not null
 );
 
 CREATE TABLE persons
@@ -17,7 +17,7 @@ CREATE TABLE persons
     name varchar not null,
     surname varchar not null,
     patronymic varchar,
-    birthDate date not null,
+    birth_date date not null,
     gender gender_type not null,
 
     CONSTRAINT fk_document_person FOREIGN KEY(document_id) REFERENCES documents(id)
