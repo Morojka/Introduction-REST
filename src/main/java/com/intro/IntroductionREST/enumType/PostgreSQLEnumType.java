@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 
+//Отдельный класс enum для работы с PostgreSQL типом доанных ENUM
 public class PostgreSQLEnumType extends EnumType {
 
     public void nullSafeSet(
