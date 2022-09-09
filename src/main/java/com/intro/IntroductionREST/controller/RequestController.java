@@ -1,6 +1,5 @@
 package com.intro.IntroductionREST.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.intro.IntroductionREST.client.PersonClient;
 import com.intro.IntroductionREST.model.Person;
 import com.intro.IntroductionREST.repository.PersonRepository;
@@ -8,8 +7,6 @@ import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLException;
 
 @RestController
 public class RequestController {
