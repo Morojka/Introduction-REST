@@ -4,11 +4,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.intro.IntroductionREST.model.Person;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import com.intro.IntroductionREST.wsdl.ProcessPersonRequest;
 import com.intro.IntroductionREST.wsdl.ProcessPersonResponse;
 
 public class PersonClient extends WebServiceGatewaySupport {
+
+    @Autowired
+    Environment env;
 
     public String processPerson(String person) {
         ProcessPersonRequest request = new ProcessPersonRequest();
@@ -16,7 +20,7 @@ public class PersonClient extends WebServiceGatewaySupport {
 
         //Отправка запроса soap-приложению
         ProcessPersonResponse response = (ProcessPersonResponse) getWebServiceTemplate()
-                .marshalSendAndReceive("http://localhost:8081/ws", request);
+                .marshalSendAndReceive(env.getProperty("app.soap-application-url"), request);
 
         return response.getPerson();
     }
