@@ -6,8 +6,9 @@ import com.intro.IntroductionREST.repository.PersonRepository;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,11 +43,16 @@ public class RequestController {
         //отправка запроса в soap-приложение
         String response = personClient.processPerson(personObject);
 
-
         //преобразуем ответ soap-приложения в модель Person и сохраняем в БД
         personRepository.save(personClient.mapPersonFromXML(response));
         logger.info("Successfully saved person from response: \n" + response);
 
         return response;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception ex)
+    {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
