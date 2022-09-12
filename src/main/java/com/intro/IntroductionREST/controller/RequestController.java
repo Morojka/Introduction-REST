@@ -35,7 +35,7 @@ public class RequestController {
             logger.info("Successfully saved person.");
         } catch (Exception e) {
             logger.error("Could not save person from request: \n" + person.toString());
-            throw new Exception("There was an error during person creation process. Check your credentials and try again!");
+            throw new Exception("There was an error during person creation process. Check data you sent and try again!");
         }
 
         logger.info("Sending xml representation of person to soap-application: \n" + person.toString());
